@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Undangan WhatsApp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 520px;
+  margin: auto;
+}
+h2 {
+  text-align: center;
+}
+input, textarea, button {
+  width: 100%;
+  font-size: 18px;
+  padding: 12px;
+  margin-top: 12px;
+}
+textarea {
+  height: 420px;
+}
+button {
+  border: none;
+  border-radius: 6px;
+  color: white;
+}
+.copy {
+  background: #444;
+}
+.wa {
+  background: #25D366;
+}
+</style>
+</head>
+<body>
+
+<h2>Undangan WhatsApp</h2>
+
+<input id="nama" placeholder="Ketik nama undangan">
+
+<textarea id="hasil" readonly></textarea>
+
+<button class="copy" onclick="copyPesan()">📋 COPY PESAN</button>
+<button class="wa" onclick="kirimWA()">💬 KIRIM KE WHATSAPP</button>
+
+<script>
+const namaInput = document.getElementById("nama");
+const hasil = document.getElementById("hasil");
+
+function updatePesan() {
+  const nama = (namaInput.value || "TAMU UNDANGAN").toUpperCase();
+  const namaURL = encodeURIComponent(nama);
+
+  hasil.value =
+`*UNDANGAN PERNIKAHAN*
+
+▼ Rizal Nurul Fajri & Tita Susanty H ▼
+
+https://weddingrizaltita.framer.website/?to=${namaURL}
+
+Yth. Bapak/Ibu/Saudara/i
+
+*${nama}*
+
+Di Tempat.
+----------------------------------------------
+Assalamualaikum Wr. Wb.
+
+Dengan kebahagiaan serta rasa syukur,kami ingin berbagi momen bahagia ini dan mengundang Bapak/Ibu/Saudara/i untuk hadir serta pada hari istimewa kami.
+____________
+📅 Tanggal : 08/02/2026
+
+🕌Akad (Keluarga)
+
+ Pukul : 08.00 s/d 10.00
+
+🎗️Resepsi (Tamu Undangan)
+
+ Pukul : 10.00 s/d 14.00
+
+🏠 Lokasi : Taman Wiraditra Jl. Cipamokolan No.51, Cipamokolan, Kec. Rancasari, Kota Bandung, Jawa Barat 40292
+
+📍https://maps.app.goo.gl/utgBtckrT77NUwS17
+-----------------
+Besar harapan kami Bapak/Ibu/Saudara/i dapat ikut merasakan hari bahagia dan menghadiri acara tersebut.`;
+}
+
+namaInput.addEventListener("input", updatePesan);
+updatePesan();
+
+function copyPesan() {
+  hasil.select();
+  document.execCommand("copy");
+  alert("Pesan berhasil dicopy");
+}
+
+function kirimWA() {
+  const text = encodeURIComponent(hasil.value);
+  window.open("https://wa.me/?text=" + text, "_blank");
+}
+</script>
+
+</body>
+</html>
